@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Entity\Product;
+use AppBundle\Form\Type\ProductType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,44 +15,50 @@ class FormExampleController extends Controller
      */
     public function formExampleAction(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->add('name', TextType::class)
-            ->add('submit', SubmitType::class, [
-                'label' => 'Submit Me Now!',
-                'attr'  => [
-                    'class' => 'btn btn-success'
-                ]
-            ])
-            ->getForm();
+        $form = $this->createForm(ProductType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            dump($form->getData());
+            $em = $this->getDoctrine()->getManager();
 
-            $this->addFlash('success', 'Welcome ' . $form->getData()['name']);
+            $product = $form->getData();
 
-            $name = $form->getData()['name'];
-            $this->sendMail($name);
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirectToRoute('form_example');
 
         }
 
         return $this->render(':form-example:index.html.twig', [
-            'form' => $form->createView()
+            'productForm' => $form->createView()
         ]);
     }
 
-
-    private function sendMail($body)
+    /**
+     * @Route("/{product}", name="form_edit_example")
+     */
+    public function formEditExampleAction(Request $request, Product $product)
     {
-        $mail = \Swift_Message::newInstance()
-            ->setSubject('test mail')
-            ->setFrom('someone@somewhere.com')
-            ->setTo('3n1r4r+6wphw4wogrfs0@sharklasers.com')
-            ->setBody('message body goes here ' . $body)
-        ;
+        $em = $this->getDoctrine()->getManager();
 
-        $this->get('mailer')->send($mail);
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->flush();
+
+            return $this->redirectToRoute('form_edit_example', ['product'=>$product->getId()]);
+
+        }
+
+        return $this->render(':form-example:index.html.twig', [
+            'productForm' => $form->createView()
+        ]);
     }
+
 }
