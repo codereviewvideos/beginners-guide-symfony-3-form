@@ -19,8 +19,15 @@ class Product
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\Length(min="10", minMessage="this value was too short")
      */
     protected $title;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\Email()
+     */
+    protected $email;
 
     /**
      * @ORM\Column(type="datetime")
