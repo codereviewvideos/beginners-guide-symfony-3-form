@@ -18,8 +18,8 @@ class ProductType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('email', EmailType::class)
-            ->add('availableFrom', DateTimeType::class)
-            ->add('description', TextareaType::class)
+//            ->add('availableFrom', DateTimeType::class)
+//            ->add('description', TextareaType::class)
             ->add('save', SubmitType::class)
         ;
     }

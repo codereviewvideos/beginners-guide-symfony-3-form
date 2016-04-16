@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -29,15 +30,15 @@ class Product
      */
     protected $email;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $availableFrom;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    protected $description;
+//    /**
+//     * @ORM\Column(type="datetime")
+//     */
+//    protected $availableFrom;
+//
+//    /**
+//     * @ORM\Column(type="text")
+//     */
+//    protected $description;
 
 
     
@@ -103,6 +104,25 @@ class Product
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     * @return Product
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
 
         return $this;
     }

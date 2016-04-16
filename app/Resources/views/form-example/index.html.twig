@@ -1,6 +1,5 @@
 {% extends '::base.html.twig' %}
 
-
 {% block body %}
 
     <h2>Symfony 3 Form Example</h2>
@@ -8,7 +7,21 @@
     <hr />
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+
+
+
+
+    <div class="form-group {% if not form.title.vars.valid %}has-error{% endif %}">
+        {{ form_label(form.title) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+        </div>
+    </div>
+
+    <input type="text" name="product[cheese]">
+
     {{ form_end(form) }}
 
 {% endblock %}
