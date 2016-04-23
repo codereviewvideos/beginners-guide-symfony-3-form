@@ -34,13 +34,42 @@ class Product
 //     * @ORM\Column(type="datetime")
 //     */
 //    protected $availableFrom;
-//
-//    /**
-//     * @ORM\Column(type="text")
-//     */
-//    protected $description;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
 
+    /**
+     * @ORM\Column(name="`integer`", type="integer")
+     */
+    protected $integer;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $money;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $number;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     * @Assert\Range(min=0, max=1)
+     */
+    protected $percent;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $url;
+
+    /**
+     * @ORM\Column(name="`range`", type="integer")
+     */
+    protected $range;
     
 
     /**
@@ -127,7 +156,145 @@ class Product
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSomeInteger()
+    {
+        return $this->someInteger;
+    }
+
+    /**
+     * @param mixed $someInteger
+     * @return Product
+     */
+    public function setSomeInteger($someInteger)
+    {
+        $this->someInteger = $someInteger;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMoney()
+    {
+        return $this->money;
+    }
+
+    /**
+     * @param mixed $money
+     * @return Product
+     */
+    public function setMoney($money)
+    {
+        $this->money = $money;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param mixed $number
+     * @return Product
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPercent()
+    {
+        return $this->percent;
+    }
+
+    /**
+     * @param mixed $percent
+     * @return Product
+     */
+    public function setPercent($percent)
+    {
+        $this->percent = $percent;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     * @return Product
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRange()
+    {
+        return $this->range;
+    }
+
+    /**
+     * @param mixed $range
+     * @return Product
+     */
+    public function setRange($range)
+    {
+        $this->range = $range;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInteger()
+    {
+        return $this->integer;
+    }
+
+    /**
+     * @param mixed $integer
+     * @return Product
+     */
+    public function setInteger($integer)
+    {
+        $this->integer = $integer;
+
+        return $this;
+    }
 
 
+
+
+
+
+
+    
 
 }

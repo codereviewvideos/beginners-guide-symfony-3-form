@@ -15,7 +15,7 @@ class FormExampleController extends Controller
      */
     public function formAddExampleAction(Request $request)
     {
-        $form = $this->createForm(ProductType::class);
+        $form = $this->createForm(ProductType::class, new Product());
 
         $form->handleRequest($request);
 
@@ -35,7 +35,7 @@ class FormExampleController extends Controller
         }
         
         return $this->render(':form-example:index.html.twig', [
-            'form' => $form->createView()
+            'myForm' => $form->createView()
         ]);
     }
 
