@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% form_theme myForm _self %}
+
+
+
 {% block body %}
 
     <h2>Symfony 3 Form Example</h2>
@@ -7,27 +11,5 @@
     <hr />
 
     {{ form(myForm) }}
-
-    {#{{ form_start(myForm) }}#}
-
-    {#{{ form_errors(myForm) }}#}
-
-    {#<div class="form-group {% if not myForm.email.vars.valid %}has-error{% endif %}">#}
-        {#{{ form_label(myForm.email, 'My Email') }}#}
-        {#<div class="col-sm-10">#}
-            {#{{ form_widget(myForm.email, { 'attr': { 'class': 'input-lg' } }) }}#}
-            {#{{ form_errors(myForm.email) }}#}
-        {#</div>#}
-    {#</div>#}
-
-    {#<div class="form-group {% if not myForm.title.vars.valid %}has-error{% endif %}">#}
-        {#{{ form_label(myForm.title) }}#}
-        {#<div class="col-sm-10">#}
-            {#{{ form_widget(myForm.title) }}#}
-            {#{{ form_errors(myForm.title) }}#}
-        {#</div>#}
-    {#</div>#}
-
-    {#{{ form_end(myForm) }}#}
 
 {% endblock %}

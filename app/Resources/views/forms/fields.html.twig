@@ -1,0 +1,4 @@
+{%- block float_widget -%}
+    {%- set type = type|default('number') -%}
+    {{ block('form_widget_simple') }}
+{%- endblock float_widget -%}

@@ -15,11 +15,13 @@ class FormExampleController extends Controller
      */
     public function formAddExampleAction(Request $request)
     {
-        $form = $this->createForm(ProductType::class, new Product());
+        $existingProduct = new Product();
+
+        $form = $this->createForm(ProductType::class, $existingProduct);
 
         $form->handleRequest($request);
 
-        dump($form->createView());
+//        dump($form->createView());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
