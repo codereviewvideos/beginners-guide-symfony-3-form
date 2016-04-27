@@ -12,14 +12,13 @@ class FloatType extends AbstractType
     {
         $resolver->setDefaults([
             'scale' => 3,
-            'attr' => [
-                'step' => 0.002,
+            'attr'  => [
+                'step' => 1.9,
                 'min'  => 55,
-                'max'  => 90,
+                'max'  => 550,
             ]
         ]);
     }
-
 
     public function getParent()
     {

@@ -15,19 +15,8 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('integer', IntegerType::class)
-            ->add('float', FloatType::class, [
-                'attr' => [
-                    'step' => 0.5
-                ]
-            ])
-            ->add('number', NumberType::class, [
-                'scale' => 3,
-                'attr' => [
-                    'step' => 0.001,
-                    'min'  => 10,
-                    'max'  => 20,
-                ]
-            ])
+            ->add('number', NumberType::class)
+            ->add('float', FloatType::class)
             ->add('save', SubmitType::class)
         ;
     }
@@ -36,7 +25,6 @@ class ProductType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Product',
-            'csrf_protection' => false,
         ]);
     }
 }
