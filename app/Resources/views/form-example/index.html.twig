@@ -6,6 +6,39 @@
 
     <hr />
 
-    {{ form(myForm) }}
+    {#{{ form(myForm) }}#}
+
+    {{ form_start(myForm) }}
+
+    {{ form_errors(myForm) }}
+
+    <div class="form-group {% if not myForm.datetime.vars.valid %}has-error{% endif %}">
+        {{ form_label(myForm.datetime) }}
+        <div class="col-sm-10">
+            {{ form_widget(myForm.datetime) }}
+            {{ form_errors(myForm.datetime) }}
+        </div>
+    </div>
+
+    {{ form_end(myForm) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function() {
+           $('#product_datetime').datetimepicker({
+               inline: true,
+               sideBySide: true,
+               showTodayButton: true,
+               toolbarPlacement: 'bottom',
+               format: 'YYYY HH:mm:ss DD-MM'
+           });
+        });
+    </script>
 
 {% endblock %}

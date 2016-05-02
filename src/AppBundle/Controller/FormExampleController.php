@@ -16,6 +16,8 @@ class FormExampleController extends Controller
     public function formAddExampleAction(Request $request)
     {
         $product = new Product();
+//        $product->setDateTime((new \DateTime('now'))->format('Y H:i:s d-m'));
+//        dump($product);
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);

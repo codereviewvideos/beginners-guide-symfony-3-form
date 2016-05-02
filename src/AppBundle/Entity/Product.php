@@ -18,10 +18,16 @@ class Product
      */
     protected $id;
 
+//    /**
+//     * @ORM\Column(type="date")
+//     */
+//    protected $date;
+
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
+     * @ Assert\GreaterThan("today")
      */
-    protected $rangeValue;
+    protected $dateTime;
 
     /**
      * @return mixed
@@ -31,25 +37,45 @@ class Product
         return $this->id;
     }
 
+//    /**
+//     * @return mixed
+//     */
+//    public function getDate()
+//    {
+//        return $this->date;
+//    }
+//
+//    /**
+//     * @param mixed $date
+//     * @return Product
+//     */
+//    public function setDate($date)
+//    {
+//        $this->date = $date;
+//
+//        return $this;
+//    }
+
     /**
      * @return mixed
      */
-    public function getRangeValue()
+    public function getDateTime()
     {
-        return $this->rangeValue;
+        return $this->dateTime;
     }
 
     /**
-     * @param mixed $rangeValue
+     * @param mixed $dateTime
      * @return Product
      */
-    public function setRangeValue($rangeValue)
+    public function setDateTime($dateTime)
     {
-        $this->rangeValue = $rangeValue;
+        $this->dateTime = $dateTime;
 
         return $this;
     }
 
 
-    
+
+
 }
