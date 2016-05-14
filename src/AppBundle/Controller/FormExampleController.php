@@ -16,6 +16,7 @@ class FormExampleController extends Controller
     public function formAddExampleAction(Request $request)
     {
         $product = new Product();
+
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);

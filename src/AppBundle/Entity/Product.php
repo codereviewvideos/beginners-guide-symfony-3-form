@@ -19,9 +19,9 @@ class Product
     protected $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
-    protected $rangeValue;
+    protected $choice;
 
     /**
      * @return mixed
@@ -34,22 +34,21 @@ class Product
     /**
      * @return mixed
      */
-    public function getRangeValue()
+    public function getChoice()
     {
-        return $this->rangeValue;
+        return $this->choice;
     }
 
     /**
-     * @param mixed $rangeValue
+     * @param mixed $choice
      * @return Product
      */
-    public function setRangeValue($rangeValue)
+    public function setChoice($choice)
     {
-        $this->rangeValue = $rangeValue;
+        $this->choice = $choice;
 
         return $this;
     }
 
 
-    
 }
