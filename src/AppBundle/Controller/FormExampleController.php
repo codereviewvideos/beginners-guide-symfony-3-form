@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Product;
-use AppBundle\Form\Type\ProductType;
+use AppBundle\Entity\Battle;
+use AppBundle\Form\Type\BattleType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,9 +15,7 @@ class FormExampleController extends Controller
      */
     public function formAddExampleAction(Request $request)
     {
-        $product = new Product();
-
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(BattleType::class);
 
         $form->handleRequest($request);
 
@@ -27,12 +25,12 @@ class FormExampleController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $product = $form->getData();
+            $battle = $form->getData();
 
-            $em->persist($product);
+            $em->persist($battle);
             $em->flush();
 
-            $this->addFlash('success', 'We saved a product with id ' . $product->getId());
+            $this->addFlash('success', 'We saved a battle with id ' . $battle->getId());
 
         }
         
@@ -42,11 +40,11 @@ class FormExampleController extends Controller
     }
 
     /**
-     * @Route("/edit/{product}", name="form_edit_example")
+     * @Route("/edit/{battle}", name="form_edit_example")
      */
-    public function formEditExampleAction(Request $request, Product $product)
+    public function formEditExampleAction(Request $request, Battle $battle)
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(BattleType::class, $battle);
 
         $form->handleRequest($request);
 
@@ -55,14 +53,14 @@ class FormExampleController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->addFlash('info', 'We edited a product with id ' . $product->getId());
+            $this->addFlash('info', 'We edited a battle with id ' . $battle->getId());
 
             return $this->redirectToRoute('form_add_example');
 
         }
 
         return $this->render(':form-example:index.html.twig', [
-            'form' => $form->createView()
+            'myForm' => $form->createView()
         ]);
     }
 }

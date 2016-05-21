@@ -7,9 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="products")
+ * @ORM\Table(name="fighters")
  */
-class Product
+class Fighter
 {
     /**
      * @ORM\Column(type="integer")
@@ -21,7 +21,9 @@ class Product
     /**
      * @ORM\Column(type="string")
      */
-    protected $choice;
+    protected $name;
+
+
 
     /**
      * @return mixed
@@ -34,21 +36,20 @@ class Product
     /**
      * @return mixed
      */
-    public function getChoice()
+    public function getName()
     {
-        return $this->choice;
+        return $this->name;
     }
 
     /**
-     * @param mixed $choice
-     * @return Product
+     * @param mixed $name
+     * @return Fighter
      */
-    public function setChoice($choice)
+    public function setName($name)
     {
-        $this->choice = $choice;
+        $this->name = $name;
 
         return $this;
     }
-
 
 }
