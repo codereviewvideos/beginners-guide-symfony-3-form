@@ -18,7 +18,7 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('choice', ChoiceType::class, [
+            ->add('choices', ChoiceType::class, [
                 'choices' => [
                     'A-Wing' => self::AWING,
                     'B-Wing' => self::BWING,
@@ -26,9 +26,6 @@ class ProductType extends AbstractType
                     'Y-Wing' => self::YWING,
                 ],
                 'label'      => 'Optimal way to kill a tie-fighter?',
-                'preferred_choices' => function ($choice, $key) {
-                    return substr($choice, 0, 1) < "m";
-                },
                 'expanded'  => true,
                 'multiple'  => true,
             ])
