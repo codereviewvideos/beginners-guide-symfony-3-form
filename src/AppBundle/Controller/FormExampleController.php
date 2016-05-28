@@ -2,8 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Battle;
-use AppBundle\Form\Type\BattleType;
+use AppBundle\Entity\DataFeed;
+use AppBundle\Entity\Timetable;
+use AppBundle\Form\Type\DataFeedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,23 +16,26 @@ class FormExampleController extends Controller
      */
     public function formAddExampleAction(Request $request)
     {
-        $form = $this->createForm(BattleType::class);
+        $dataFeed = new DataFeed();
+        $dataFeed->setAnotherTimetable((new Timetable())->setPresetChoice(30));
+
+        $form = $this->createForm(DataFeedType::class, $dataFeed);
 
         $form->handleRequest($request);
-
-        dump($form->createView());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
 
-            $battle = $form->getData();
+            /**
+             * @var $dataFeed \AppBundle\Entity\DataFeed
+             */
+            $dataFeed = $form->getData();
 
-            $em->persist($battle);
+            $em->persist($dataFeed);
             $em->flush();
 
-            $this->addFlash('success', 'We saved a battle with id ' . $battle->getId());
-
+            $this->addFlash('success', 'We saved a data feed with id ' . $dataFeed->getId());
         }
         
         return $this->render(':form-example:index.html.twig', [
@@ -40,11 +44,11 @@ class FormExampleController extends Controller
     }
 
     /**
-     * @Route("/edit/{battle}", name="form_edit_example")
+     * @Route("/edit/{dataFeed}", name="form_edit_example")
      */
-    public function formEditExampleAction(Request $request, Battle $battle)
+    public function formEditExampleAction(Request $request, DataFeed $dataFeed)
     {
-        $form = $this->createForm(BattleType::class, $battle);
+        $form = $this->createForm(DataFeedType::class, $dataFeed);
 
         $form->handleRequest($request);
 
@@ -53,10 +57,9 @@ class FormExampleController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->addFlash('info', 'We edited a battle with id ' . $battle->getId());
+            $this->addFlash('info', 'We edited a data feed with id ' . $dataFeed->getId());
 
             return $this->redirectToRoute('form_add_example');
-
         }
 
         return $this->render(':form-example:index.html.twig', [

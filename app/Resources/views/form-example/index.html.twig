@@ -6,6 +6,39 @@
 
     <hr />
 
-    {{ form(myForm) }}
+    {#{{ form(myForm) }}#}
+
+    {{ form_start(myForm) }}
+
+    {{ form_errors(myForm) }}
+
+    {{ form_row(myForm.name) }}
+    {{ form_row(myForm.url) }}
+    {{ form_row(myForm.enabled) }}
+
+    <div class="{% if not myForm.timetable.vars.valid %}has-error{% endif %}">
+        {{ form_row(myForm.timetable.presetChoice) }}
+        {{ form_row(myForm.timetable.manualEntry) }}
+
+        <div class="col-sm-offset-2">
+            {{ form_errors(myForm.timetable) }}
+        </div>
+    </div>
+
+    <hr>
+    <div class="{% if not myForm.anotherTimetable.vars.valid %}has-error{% endif %}">
+        {{ form_row(myForm.anotherTimetable.presetChoice) }}
+        {{ form_row(myForm.anotherTimetable.manualEntry) }}
+
+        <div class="col-sm-offset-2">
+            {{ form_errors(myForm.anotherTimetable) }}
+        </div>
+    </div>
+
+
+    {{ form_row(myForm.save, { 'attr': { 'class': 'btn btn-success' } }) }}
+
+    {{ form_end(myForm) }}
+
 
 {% endblock %}
