@@ -14,10 +14,10 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('date', DateType::class, [
-//                'widget' => 'text',
-//                'years' => range((new \DateTime('now'))->format('Y'), (new \DateTime('+30 years'))->format('Y'))
-//            ])
+            ->add('date', DateType::class, [
+                'widget' => 'text',
+                'years' => range((new \DateTime('now'))->format('Y'), (new \DateTime('+30 years'))->format('Y'))
+            ])
             ->add('datetime', DateTimeType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy HH:mm:ss dd-MM',

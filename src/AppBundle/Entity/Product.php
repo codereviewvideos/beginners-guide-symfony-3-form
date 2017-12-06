@@ -18,10 +18,10 @@ class Product
      */
     protected $id;
 
-//    /**
-//     * @ORM\Column(type="date")
-//     */
-//    protected $date;
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $date;
 
     /**
      * @ORM\Column(type="datetime")
@@ -37,24 +37,24 @@ class Product
         return $this->id;
     }
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getDate()
-//    {
-//        return $this->date;
-//    }
-//
-//    /**
-//     * @param mixed $date
-//     * @return Product
-//     */
-//    public function setDate($date)
-//    {
-//        $this->date = $date;
-//
-//        return $this;
-//    }
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     * @return Product
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
 
     /**
      * @return mixed

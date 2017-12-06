@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+    db:
+        image: mysql:5.7.20
+        environment:
+          - MYSQL_ROOT_PASSWORD=password
+          - MYSQL_DATABASE=db_acceptance
+          - MYSQL_USER=dbuser
+          - MYSQL_PASSWORD=dbpassword
+        ports:
+          - "33063:3306"
